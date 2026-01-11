@@ -74,7 +74,7 @@ final class NodeMapper {
             return mapCollection(node, targetType);
         }
 
-        if (typeResolver.isAbstractOrInterface(raw)) {
+        if (typeResolver.needsTypeResolution(raw)) {
             DiscriminatorTypeResolver.ResolvedType resolved = typeResolver.resolve(node, raw);
             JsonNode sanitized = typeResolver.stripDiscriminators(node, resolved.discriminatorsToRemove());
             return mapNode(sanitized, mapper.getTypeFactory().constructType(resolved.concreteType()));

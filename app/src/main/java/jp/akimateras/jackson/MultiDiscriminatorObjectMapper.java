@@ -26,7 +26,7 @@ public final class MultiDiscriminatorObjectMapper {
 
     public MultiDiscriminatorObjectMapper(ObjectMapper mapper, boolean defaultNonNull) {
         this.mapper = mapper;
-        this.nodeMapper = new NodeMapper(mapper, new DiscriminatorTypeResolver(), defaultNonNull);
+        this.nodeMapper = new NodeMapper(mapper, new DiscriminatorTypeResolver(mapper), defaultNonNull);
     }
 
     public <T> T readValue(String json, Class<T> clazz) throws IOException {

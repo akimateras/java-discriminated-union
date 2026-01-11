@@ -31,7 +31,7 @@ java {
 }
 
 application {
-    mainClass = "com.example.App"
+    mainClass = "jp.akimateras.jackson.App"
 }
 
 tasks.named("test") {
@@ -41,7 +41,11 @@ tasks.named("test") {
 tasks.withType(JavaCompile).configureEach {
     options.errorprone {
         check "NullAway", net.ltgt.gradle.errorprone.CheckSeverity.ERROR
-        option "NullAway:AnnotatedPackages", "com.example"
+        option "NullAway:AnnotatedPackages", "jp.akimateras.jackson"
         option "NullAway:RecognizedAnnotations", "org.jspecify.annotations.Nullable"
     }
+    options.compilerArgs += [
+        "-Xlint:all",
+        "-parameters"
+    ]
 }
